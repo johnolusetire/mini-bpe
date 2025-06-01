@@ -1,10 +1,8 @@
 from minibpe.base import *
-class BasicTokenizer:
-    def __init__(self) -> None:
-        self.vocab = {idx: bytes([idx]) for idx in range(256)}
-        self.merges = {}
-        pass
-
+class BasicTokenizer(BaseTokenizer):
+    def __init__(self):
+        super.__init__()
+        
     """
     To train a tokenizer using bpe. Basic way (no regex)
         - Encode your text using utf-8 encoding
