@@ -1,4 +1,3 @@
-from genericpath import exists
 import os
 
 class BaseTokenizer:
@@ -58,7 +57,13 @@ class BaseTokenizer:
             json.dump(model_data, f, indent=2)
 
     def load(self, path: str):
-        pass
+        if not os.path.exists(path):
+            raise FileExistsError(f"Path given {path} does not exist does")
+        assert path.endswith(".json")
+        
+        with open(path, "r", encoding="utf-8") as f:
+            pass
+
 
 def get_pair_by_frequency(ids: list[int], mode: str = "max", counts: dict | None = None) -> tuple[int, int]:
     # make sure mode is set to max or min
